@@ -19,7 +19,9 @@ class DeviceController extends Controller
             'device_id' => 'bail|required|unique:devices|max:255'
         ]);
 
-        $device = Device::create([$validated['device_id'], $request->user()->id]);
+        // return response()->json(['device_id' => $validated['device_id'], 'user_id' => $request->user()->id]);
+
+        $device = Device::create(['device_id' => $validated['device_id'], 'user_id' => $request->user()->id]);
         return response()->json($device, 201);
     }
 
